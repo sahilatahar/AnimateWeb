@@ -2,6 +2,7 @@ import { motion, useAnimation } from "framer-motion"
 import { useEffect } from "react"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6"
 import CARS, { CarType } from "../data/cars"
+import { getRandomFunnyLine } from "../data/funnyLines"
 
 interface ShowCarProps {
 	car: CarType
@@ -33,6 +34,10 @@ function ShowCar({ car, setCar }: ShowCarProps) {
 			controls.start("animate")
 		})
 		setCar(CARS[(index - 1 + CARS.length) % CARS.length])
+	}
+
+	const showFunnyLine = () => {
+		alert(getRandomFunnyLine())
 	}
 
 	useEffect(() => {
@@ -91,7 +96,7 @@ function ShowCar({ car, setCar }: ShowCarProps) {
 				</div>
 			</div>
 			{/* Foreground */}
-			<div className="absolute top-0 left-1/2 -translate-x-1/2 flex justify-between w-full px-4 sm:px-8 lg:px-32 md:py-4 my-4 items-center flex-col md:flex-row gap-8 py-8">
+			<div className="absolute top-0 left-1/2 -translate-x-1/2 flex justify-between w-full px-4 sm:px-8 lg:px-32 md:py-4 sm:my-4 items-center flex-col md:flex-row gap-8 py-8">
 				{/* Cars Brand and slogan */}
 				<div className="overflow-hidden">
 					<motion.div
@@ -121,10 +126,16 @@ function ShowCar({ car, setCar }: ShowCarProps) {
 					</motion.div>
 				</div>
 				<div className="flex items-center justify-center gap-2 md:gap-8 w-full md:w-auto">
-					<button className="bg-white/10 w-full sm:w-40 py-2 border border-white/20 rounded-full">
+					<button
+						className="bg-white/10 w-full sm:w-40 py-2 border border-white/20 rounded-full"
+						onClick={showFunnyLine}
+					>
 						Buy Now
 					</button>
-					<button className="bg-white/10 w-full sm:w-40 py-2 border border-white/20 rounded-full">
+					<button
+						className="bg-white/10 w-full sm:w-40 py-2 border border-white/20 rounded-full"
+						onClick={showFunnyLine}
+					>
 						View Details
 					</button>
 				</div>
